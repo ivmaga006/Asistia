@@ -69,8 +69,8 @@ La idea es que el estudiante sepa en todo momento cuántas faltas tiene, cuánta
 ## Estructura de la interfaz
 
 ```
-Horario (vista principal)
-├── Agenda
+Panel Princial (vista principal)
+├── Tareas
 ├── Faltas
 ├── Notas
 └── Configuración
