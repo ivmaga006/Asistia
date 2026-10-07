@@ -1,70 +1,109 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Asistia</title>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Asistia</title>
+    </head>
 
-  <body>
-    <!-- Cabecera -->
-    <header>
-      <h1>Asistia</h1>
-      <p>Agenda, faltas y notas de tu curso en un solo sitio.</p>
-    </header>
+    <body>
+        <!-- Cabecera -->
+        <header>
+            <h1>Asistia</h1>
+            <p>Agenda, faltas y notas de tu curso en un solo sitio.</p>
+        </header>
 
-    <!-- Menú -->
-    <aside>
-      <nav>
-        <h2>Menú</h2>
-        <ul>
-          <li><a href="#dashboard">Panel principal</a></li>
-          <li><a href="#tareas">Tareas</a></li>
-          <li><a href="#faltas">Faltas</a></li>
-          <li><a href="#notas">Notas</a></li>
-          <li><a href="#configuracion">Configuración</a></li>
-        </ul>
-      </nav>
-    </aside>
+        <!-- Menú -->
+        <aside>
+            <nav>
+                <h2>Menú</h2>
+                <ul>
+                    <li><a href="#dashboard">Panel principal</a></li>
+                    <li><a href="#tareas">Tareas</a></li>
+                    <li><a href="#faltas">Faltas</a></li>
+                    <li><a href="#notas">Notas</a></li>
+                    <li><a href="#configuracion">Configuración</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-    <!-- Contenido principal -->
-    <main>
-      <!-- Panel principal -->
-      <section id="dashboard">
-        <h2>Panel principal</h2>
-        <p>
-          Consulta tu horario semanal, tus próximas entregas y cómo va tu curso
-          de un vistazo.
-        </p>
+        <!-- Contenido principal -->
+        <main>
+            <!-- Panel principal -->
+            <section id="dashboard">
+                <h2>Panel principal</h2>
+                <p>Consulta tu horario semanal, tus próximas entregas y cómo va tu curso de un vistazo.</p>
 
-        <!-- Resumen -->
-        <section id="resumen">
-          <h3>Resumen</h3>
-          <article>
-            <h4>Control de faltas</h4>
-            <p>Aviso al llegar al 50 % y al 100 % del límite de faltas.</p>
-          </article>
-          <article>
-            <h4>Agenda de tareas</h4>
-            <p>
-              Exámenes y trabajos por módulo, con fecha de entrega y estado.
-            </p>
-          </article>
-          <article>
-            <h4>Notas</h4>
-            <p>Nota media del curso calculada automáticamente.</p>
-          </article>
-          <article>
-            <h4>Horario</h4>
-            <p>Créalo a mano o impórtalo desde un archivo JSON.</p>
-          </article>
-        </section>
-      </section>
-    </main>
+                <!-- Resumen -->
+                <section id="resumen">
+                    <h3>Resumen</h3>
+                    <article>
+                        <h4>Control de faltas</h4>
+                        <p>Aviso al llegar al 50 % y al 100 % del límite de faltas.</p>
+                    </article>
+                    <article>
+                        <h4>Agenda de tareas</h4>
+                        <p>Exámenes y trabajos por módulo, con fecha de entrega y estado.</p>
+                    </article>
+                    <article>
+                        <h4>Notas</h4>
+                        <p>Nota media del curso calculada automáticamente.</p>
+                    </article>
+                    <article>
+                        <h4>Horario</h4>
+                        <p>Créalo a mano o impórtalo desde un archivo JSON.</p>
+                    </article>
+                </section>
+            </section>
 
-    
-    <footer>
-      <p>Asistia, Versión 1.0</p>
-    </footer>
-  </body>
+            <!-- Próximas tareas -->
+            <section id="proxTarea">
+                <h3>Próximas Tareas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hecha</th>
+                            <th>Tarea</th>
+                            <th>Módulo</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="tarea-1" />
+                            </td>
+                            <td>
+                                <label for="tarea-1">Práctica 1. Persistencia de datos mediante ORM (1)</label>
+                            </td>
+                            <td>AD · trabajo</td>
+                            <td><time datetime="2026-10-05">Lun 5 oct</time></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="tarea-2" />
+                            </td>
+                            <td>
+                                <label for="tarea-2">Test acceso a datos</label>
+                            </td>
+                            <td>AD · examen</td>
+                            <td><time datetime="2026-10-05">Lun 5 oct</time></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="tarea-3" />
+                            </td>
+                            <td><label for="tarea-3">Entrega: instalación de Odoo 13 en Linux</label></td>
+                            <td>SGE · trabajo</td>
+                            <td><time datetime="2026-10-06">Mar 6 oct</time></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <footer>
+            <p>Asistia, Versión 1.0</p>
+        </footer>
+    </body>
 </html>
