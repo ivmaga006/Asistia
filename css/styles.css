@@ -1,0 +1,240 @@
+:root {
+    /*barra lateral, botones, texto y elementos seleccionados*/
+    --principal: #12283f;
+    /*Fondo general, campos y filas*/
+    --general: #f9fafe;
+    /*Faltas, errores y avisos*/
+    --faltas: #c33148;
+    /* tareas finalizadas y confirmaciones*/
+    --exito: #568203;
+    --texto-secundario: #4c5d6f;
+    --bordes-campos: #7a8795;
+    --separadores: #c6ccd4;
+    --celdas-horario: #dde1e7;
+    --tarjetas: #ebedf3;
+    --menu-activo: #32455a;
+    --texto-sobre-azul: #bfc6ce;
+    --fondo-exito: #e2e9db;
+    --menu-hover: #32455a;
+
+    --fuente: "Hanken Grotesk", sans-serif;
+
+    --peso-regular: 400;
+    --peso-semibold: 600;
+
+    --tam-titulo-pagina: 24px;
+    --tam-titulo-bloque: 18px;
+    --tam-cifra: 40px;
+    --tam-16: 16px;
+    --tam-14: 14px;
+    --tam-12: 12px;
+}
+
+nav h2,
+#dashboard > h2,
+#dashboard > p,
+#resumen > h3,
+.proxTareas thead,
+header p {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Hanken Grotesk", sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    grid-template-rows: auto 1fr auto;
+    display: grid;
+    grid-template-columns: 224px 1fr;
+    grid-template-areas:
+        "cabecera cabecera"
+        "menu contenido"
+        "pie pie";
+}
+h3 {
+    font-size: var(--tam-titulo-bloque);
+    font-weight: var(--peso-semibold);
+    color: var(--principal);
+}
+
+.cabecera {
+    grid-area: cabecera;
+    background-color: var(--principal);
+    h1 {
+        font-size: var(--tam-12);
+        color: var(--texto-sobre-azul);
+        margin-left: 16px;
+    }
+}
+.menu {
+    grid-area: menu;
+    width: 224px;
+    padding: 16px;
+    background-color: var(--principal);
+    box-sizing: border-box;
+}
+
+.menu nav,
+.menu ul {
+    height: 100%;
+}
+
+.menu ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu li:last-child {
+    margin-top: auto;
+}
+
+.menu a {
+    margin-bottom: 4px;
+    display: block;
+    padding: 15px 12px;
+    border-radius: 8px;
+    color: var(--texto-sobre-azul);
+    font-size: var(--tam-16);
+    font-weight: var(--peso-regular);
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.menu a:hover {
+    background-color: var(--menu-hover);
+}
+
+.menu a[aria-current="page"] {
+    background-color: var(--menu-activo);
+    font-weight: var(--peso-semibold);
+}
+
+.menu a:focus-visible {
+    outline: 2px solid var(--texto-sobre-azul);
+    outline-offset: 2px;
+}
+
+.contenido {
+    grid-area: contenido;
+    margin-left: 32px;
+    margin-top: 32px;
+}
+
+.proxTareas {
+    width: 752px;
+    height: 176px;
+    background-color: var(--tarjetas);
+    border-radius: 8px;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow: hidden; /* Por si acaso se pasa algo, corta el sobrante limpiamente */
+}
+
+.proxTareas div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.proxTareas div h3 {
+    margin: 0;
+    font-size: var(--tam-16, 16px);
+}
+
+.proxTareas div a {
+    text-decoration: none;
+    font-size: var(--tam-14);
+    color: var(--texto-secundario);
+}
+
+.proxTareas table {
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    width: 100%;
+}
+
+.proxTareas td {
+    background-color: var(--general);
+    padding: 6px 12px; /* Reducido ligeramente para que entren las 3 filas holgadas */
+    font-size: var(--tam-14);
+    font-weight: var(--peso-regular);
+    color: var(--principal);
+}
+
+.proxTareas td:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+.proxTareas td:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+.proxTareas td:nth-child(3) {
+    color: var(--texto-secundario);
+}
+
+.proxTareas input[type="checkbox"] {
+    accent-color: var(--principal);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.tarFaltas {
+    width: 176px;
+    height: 176px;
+    margin: 0 24px;
+    background-color: var(--tarjetas);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+.tarFaltas h4 {
+    margin: 0 0 8px 0;
+    color: var(--texto-secundario);
+    font-size: var(--tam-14);
+}
+
+.tarFaltas .digito {
+    margin: auto 0;
+    font-size: var(--tam-cifra);
+    color: var(--principal);
+}
+
+.tarFaltas .limite {
+    margin: 0;
+    color: var(--texto-secundario);
+    font-size: var(--tam-12, 12px);
+}
+
+.pie {
+    grid-area: pie;
+    background-color: var(--principal);
+    p {
+        font-size: var(--tam-12);
+        color: var(--texto-sobre-azul);
+        margin-left: 16px;
+    }
+}
+
+#resumen {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+}

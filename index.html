@@ -4,21 +4,28 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Asistia</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
 
     <body>
         <!-- Cabecera -->
-        <header>
+        <header class="cabecera">
             <h1>Asistia</h1>
             <p>Agenda, faltas y notas de tu curso en un solo sitio.</p>
         </header>
 
         <!-- Menú -->
-        <aside>
+        <aside class="menu">
             <nav>
                 <h2>Menú</h2>
                 <ul>
-                    <li><a href="#dashboard">Panel principal</a></li>
+                    <li><a href="#dashboard" aria-current="page">Inicio</a></li>
                     <li><a href="#tareas">Tareas</a></li>
                     <li><a href="#faltas">Faltas</a></li>
                     <li><a href="#notas">Notas</a></li>
@@ -28,7 +35,7 @@
         </aside>
 
         <!-- Contenido principal -->
-        <main>
+        <main class="contenido">
             <!-- Panel principal -->
             <section id="dashboard">
                 <h2>Panel principal</h2>
@@ -37,72 +44,147 @@
                 <!-- Resumen -->
                 <section id="resumen">
                     <h3>Resumen</h3>
-                    <article>
-                        <h4>Control de faltas</h4>
-                        <p>Aviso al llegar al 50 % y al 100 % del límite de faltas.</p>
+                    <article class="proxTareas">
+                        <div>
+                            <h3>Próximas Tareas</h3>
+                            <a href="#tareas">Ver tareas</a>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Estado</th>
+                                    <th>Tarea</th>
+                                    <th>Módulo</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" id="tarea-1" />
+                                    </td>
+                                    <td>
+                                        <label for="tarea-1">Práctica 1. Persistencia de datos mediante ORM (1)</label>
+                                    </td>
+                                    <td>AD · trabajo</td>
+                                    <td><time datetime="2026-10-05">Lun 5 oct</time></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" id="tarea-2" />
+                                    </td>
+                                    <td>
+                                        <label for="tarea-2">Test acceso a datos</label>
+                                    </td>
+                                    <td>AD · examen</td>
+                                    <td><time datetime="2026-10-05">Lun 5 oct</time></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" id="tarea-3" />
+                                    </td>
+                                    <td><label for="tarea-3">Entrega: instalación de Odoo 13 en Linux</label></td>
+                                    <td>SGE · trabajo</td>
+                                    <td><time datetime="2026-10-06">Mar 6 oct</time></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </article>
-                    <article>
-                        <h4>Agenda de tareas</h4>
-                        <p>Exámenes y trabajos por módulo, con fecha de entrega y estado.</p>
+                    <article class="tarFaltas">
+                        <h4>Faltas</h4>
+                        <p class="digito">9%</p>
+                        <p class="limite">limite 15%</p>
                     </article>
-                    <article>
-                        <h4>Notas</h4>
-                        <p>Nota media del curso calculada automáticamente.</p>
+                    <article class="resumNotas">
+                        <h4>Nota media</h4>
+                        <p class="dato">74%</p>
+                        <a href="#notas">ver notas</a>
                     </article>
-                    <article>
+                    <article class="horario">
                         <h4>Horario</h4>
-                        <p>Créalo a mano o impórtalo desde un archivo JSON.</p>
+                        <button><</button>
+                        <button>></button>
+                        <p>Hoy</p>
+                        <table>
+                            <caption><h3>Semana del 5 al 9 de octubre</h3></caption>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Lun 5</th>
+                                    <th>Mar 6</th>
+                                    <th>Mié 7</th>
+                                    <th>Jue 8</th>
+                                    <th>Vie 9</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>14:05 - 15:00</th>
+                                    <td>SGE</td>
+                                    <td>IPE</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>SGE</td>
+                                </tr>
+                                <tr>
+                                    <th>15:00 - 15:55</th>
+                                    <td>SGE · falta</td>
+                                    <td>IPE</td>
+                                    <td>DI</td>
+                                    <td>AD</td>
+                                    <td>SGE</td>
+                                </tr>
+                                <tr>
+                                    <th>15:55 - 16:50</th>
+                                    <td>PI</td>
+                                    <td>INP</td>
+                                    <td>DI</td>
+                                    <td>AD</td>
+                                    <td>SGE</td>
+                                </tr>
+                                <tr>
+                                    <th>16:50 - 17:45</th>
+                                    <td>AD</td>
+                                    <td>DI</td>
+                                    <td>SASP</td>
+                                    <td>PMDM</td>
+                                    <td>DI</td>
+                                </tr>
+                                <tr>
+                                    <th>18:05 - 19:00</th>
+                                    <td>AD</td>
+                                    <td>PI</td>
+                                    <td>Tutoría</td>
+                                    <td>PMDM</td>
+                                    <td>DASP</td>
+                                </tr>
+                                <tr>
+                                    <th>19:00 - 19:55</th>
+                                    <td>PSP</td>
+                                    <td>PMDM</td>
+                                    <td>INP</td>
+                                    <td>PI</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>19:55 - 20:50</th>
+                                    <td>PSP</td>
+                                    <td>PMDM</td>
+                                    <td>INP</td>
+                                    <td>IPE</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </article>
                 </section>
             </section>
 
             <!-- Próximas tareas -->
-            <section id="proxTarea">
-                <h3>Próximas Tareas</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Hecha</th>
-                            <th>Tarea</th>
-                            <th>Módulo</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input type="checkbox" id="tarea-1" />
-                            </td>
-                            <td>
-                                <label for="tarea-1">Práctica 1. Persistencia de datos mediante ORM (1)</label>
-                            </td>
-                            <td>AD · trabajo</td>
-                            <td><time datetime="2026-10-05">Lun 5 oct</time></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" id="tarea-2" />
-                            </td>
-                            <td>
-                                <label for="tarea-2">Test acceso a datos</label>
-                            </td>
-                            <td>AD · examen</td>
-                            <td><time datetime="2026-10-05">Lun 5 oct</time></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" id="tarea-3" />
-                            </td>
-                            <td><label for="tarea-3">Entrega: instalación de Odoo 13 en Linux</label></td>
-                            <td>SGE · trabajo</td>
-                            <td><time datetime="2026-10-06">Mar 6 oct</time></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            <section></section>
         </main>
 
-        <footer>
+        <footer class="pie">
             <p>Asistia, Versión 1.0</p>
         </footer>
     </body>
