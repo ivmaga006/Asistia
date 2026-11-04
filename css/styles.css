@@ -33,15 +33,10 @@
 nav h2,
 #dashboard > h2,
 #dashboard > p,
-#resumen > h3,
+#resumen div > h3,
 .proxTareas thead,
 header p {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+    display: none;
 }
 
 * {
@@ -60,6 +55,7 @@ body {
         "menu contenido"
         "pie pie";
 }
+
 h3 {
     font-size: var(--tam-titulo-bloque);
     font-weight: var(--peso-semibold);
@@ -69,12 +65,14 @@ h3 {
 .cabecera {
     grid-area: cabecera;
     background-color: var(--principal);
-    h1 {
-        font-size: var(--tam-12);
-        color: var(--texto-sobre-azul);
-        margin-left: 16px;
-    }
 }
+
+.cabecera h1 {
+    font-size: var(--tam-12);
+    color: var(--texto-sobre-azul);
+    margin-left: 16px;
+}
+
 .menu {
     grid-area: menu;
     width: 224px;
@@ -130,6 +128,14 @@ h3 {
     grid-area: contenido;
     margin-left: 32px;
     margin-top: 32px;
+    padding-right: 32px;
+}
+
+#resumen > div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 32px;
 }
 
 .proxTareas {
@@ -139,7 +145,7 @@ h3 {
     border-radius: 8px;
     padding: 16px;
     box-sizing: border-box;
-    overflow: hidden; /* Por si acaso se pasa algo, corta el sobrante limpiamente */
+    overflow: hidden;
 }
 
 .proxTareas div {
@@ -168,7 +174,7 @@ h3 {
 
 .proxTareas td {
     background-color: var(--general);
-    padding: 6px 12px; /* Reducido ligeramente para que entren las 3 filas holgadas */
+    padding: 6px 12px;
     font-size: var(--tam-14);
     font-weight: var(--peso-regular);
     color: var(--principal);
@@ -193,48 +199,190 @@ h3 {
     cursor: pointer;
 }
 
-.tarFaltas {
+.tarFaltas,
+.resumNotas {
     width: 176px;
     height: 176px;
-    margin: 0 24px;
+    margin: 0;
     background-color: var(--tarjetas);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    padding: 47px 0;
     box-sizing: border-box;
-    padding: 16px;
 }
 
-.tarFaltas h4 {
-    margin: 0 0 8px 0;
+.tarFaltas h4,
+.resumNotas h4 {
+    margin: 0;
     color: var(--texto-secundario);
     font-size: var(--tam-14);
 }
 
-.tarFaltas .digito {
-    margin: auto 0;
+.tarFaltas .digito,
+.resumNotas .digito {
+    margin: 0;
     font-size: var(--tam-cifra);
     color: var(--principal);
 }
 
-.tarFaltas .limite {
+.tarFaltas .limite,
+.resumNotas a {
+    text-decoration: none;
     margin: 0;
     color: var(--texto-secundario);
     font-size: var(--tam-12, 12px);
 }
 
+.horario {
+    width: 100%;
+    background-color: transparent;
+    padding: 0;
+    box-sizing: border-box;
+    margin-bottom: 32px;
+}
+
+.horario > h4 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.horario button {
+    background-color: var(--general);
+    border: 1px solid var(--separadores);
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-weight: var(--peso-semibold);
+    color: var(--principal);
+    transition: background-color 150ms ease;
+}
+
+.horario button:hover {
+    background-color: var(--celdas-horario);
+}
+
+.horario table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 4px 5px;
+}
+
+.horario caption {
+    text-align: left;
+    padding-bottom: 4px;
+}
+
+.horario-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.horario-navegacion {
+    display: flex;
+    gap: 4px;
+}
+
+.horario caption h3 {
+    font-size: var(--tam-14);
+    font-weight: var(--peso-semibold);
+    color: var(--principal);
+    margin: 0;
+}
+
+.horario .horario-hoy {
+    width: auto;
+    min-width: 40px;
+    height: 24px;
+    padding: 0 10px;
+    margin-left: auto;
+    font-size: var(--tam-12);
+}
+
+.horario th,
+.horario td {
+    padding: 6px;
+    font-size: var(--tam-12);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.horario thead th {
+    background-color: transparent;
+    color: var(--texto-secundario);
+    font-weight: var(--peso-semibold);
+    height: 28px;
+}
+
+.horario thead th:first-child {
+    width: 68px;
+}
+
+.horario thead th:nth-child(2) {
+    background-color: var(--principal);
+    color: var(--texto-sobre-azul);
+    border-radius: 8px;
+}
+
+.horario tbody th {
+    background-color: transparent;
+    color: var(--texto-secundario);
+    font-weight: var(--peso-regular);
+    text-align: left;
+    padding-left: 4px;
+    width: 68px;
+    white-space: nowrap;
+}
+
+.horario tbody td {
+    background-color: var(--celdas-horario);
+    color: var(--principal);
+    font-weight: var(--peso-regular);
+    border-radius: 8px;
+    height: 38px;
+    cursor: pointer;
+    transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.horario tbody td:empty {
+    background-color: transparent;
+    border: 1px dashed var(--separadores);
+}
+
+.horario tbody td:hover {
+    background-color: var(--celdas-horario);
+    transform: scale(1.04);
+    position: relative;
+    z-index: 1;
+}
+
+.horario tbody td:active {
+    background-color: var(--faltas);
+    color: var(--general);
+}
+
+.horario tbody td.falta {
+    background-color: var(--faltas);
+    color: var(--general);
+    font-weight: var(--peso-semibold);
+}
+
 .pie {
     grid-area: pie;
     background-color: var(--principal);
-    p {
-        font-size: var(--tam-12);
-        color: var(--texto-sobre-azul);
-        margin-left: 16px;
-    }
 }
 
-#resumen {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+.pie p {
+    font-size: var(--tam-12);
+    color: var(--texto-sobre-azul);
+    margin-left: 16px;
 }

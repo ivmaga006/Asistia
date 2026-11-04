@@ -43,70 +43,80 @@
 
                 <!-- Resumen -->
                 <section id="resumen">
-                    <h3>Resumen</h3>
-                    <article class="proxTareas">
-                        <div>
-                            <h3>Próximas Tareas</h3>
-                            <a href="#tareas">Ver tareas</a>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Estado</th>
-                                    <th>Tarea</th>
-                                    <th>Módulo</th>
-                                    <th>Fecha</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" id="tarea-1" />
-                                    </td>
-                                    <td>
-                                        <label for="tarea-1">Práctica 1. Persistencia de datos mediante ORM (1)</label>
-                                    </td>
-                                    <td>AD · trabajo</td>
-                                    <td><time datetime="2026-10-05">Lun 5 oct</time></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" id="tarea-2" />
-                                    </td>
-                                    <td>
-                                        <label for="tarea-2">Test acceso a datos</label>
-                                    </td>
-                                    <td>AD · examen</td>
-                                    <td><time datetime="2026-10-05">Lun 5 oct</time></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" id="tarea-3" />
-                                    </td>
-                                    <td><label for="tarea-3">Entrega: instalación de Odoo 13 en Linux</label></td>
-                                    <td>SGE · trabajo</td>
-                                    <td><time datetime="2026-10-06">Mar 6 oct</time></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </article>
-                    <article class="tarFaltas">
-                        <h4>Faltas</h4>
-                        <p class="digito">9%</p>
-                        <p class="limite">limite 15%</p>
-                    </article>
-                    <article class="resumNotas">
-                        <h4>Nota media</h4>
-                        <p class="dato">74%</p>
-                        <a href="#notas">ver notas</a>
-                    </article>
+                    <div>
+                        <h3>Resumen</h3>
+                        <article class="proxTareas">
+                            <div>
+                                <h3>Próximas Tareas</h3>
+                                <a href="#tareas">Ver tareas</a>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Estado</th>
+                                        <th>Tarea</th>
+                                        <th>Módulo</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="tarea-1" />
+                                        </td>
+                                        <td>
+                                            <label for="tarea-1">
+                                                Práctica 1. Persistencia de datos mediante ORM (1)
+                                            </label>
+                                        </td>
+                                        <td>AD · trabajo</td>
+                                        <td><time datetime="2026-10-05">Lun 5 oct</time></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="tarea-2" />
+                                        </td>
+                                        <td>
+                                            <label for="tarea-2">Test acceso a datos</label>
+                                        </td>
+                                        <td>AD · examen</td>
+                                        <td><time datetime="2026-10-05">Lun 5 oct</time></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" id="tarea-3" />
+                                        </td>
+                                        <td><label for="tarea-3">Entrega: instalación de Odoo 13 en Linux</label></td>
+                                        <td>SGE · trabajo</td>
+                                        <td><time datetime="2026-10-06">Mar 6 oct</time></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </article>
+                        <article class="tarFaltas">
+                            <h4>Faltas</h4>
+                            <p class="digito">9%</p>
+                            <p class="limite">limite 15%</p>
+                        </article>
+                        <article class="resumNotas">
+                            <h4>Nota media</h4>
+                            <p class="digito">74%</p>
+                            <a href="#notas">ver notas</a>
+                        </article>
+                    </div>
                     <article class="horario">
                         <h4>Horario</h4>
-                        <button><</button>
-                        <button>></button>
-                        <p>Hoy</p>
                         <table>
-                            <caption><h3>Semana del 5 al 9 de octubre</h3></caption>
+                            <caption>
+                                <div class="horario-cabecera">
+                                    <div class="horario-navegacion">
+                                        <button type="button" aria-label="Semana anterior">&lt;</button>
+                                        <button type="button" aria-label="Semana siguiente">&gt;</button>
+                                    </div>
+                                    <h3>Semana del 5 al 9 de octubre</h3>
+                                    <button class="horario-hoy" type="button">Hoy</button>
+                                </div>
+                            </caption>
                             <thead>
                                 <tr>
                                     <th>Hora</th>
@@ -128,7 +138,7 @@
                                 </tr>
                                 <tr>
                                     <th>15:00 - 15:55</th>
-                                    <td>SGE · falta</td>
+                                    <td class="falta">SGE · falta</td>
                                     <td>IPE</td>
                                     <td>DI</td>
                                     <td>AD</td>
