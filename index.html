@@ -14,19 +14,19 @@
     </head>
 
     <body>
-        <!-- Cabecera -->
+        <!-- Cabecera y navegación compartidas por las vistas de la aplicación -->
         <header class="cabecera">
             <h1>Asistia</h1>
             <p>Agenda, faltas y notas de tu curso en un solo sitio.</p>
         </header>
 
-        <!-- Menú -->
+        <!-- El enlace actual se marca para identificar la vista activa -->
         <aside class="menu">
             <nav>
                 <h2>Menú</h2>
                 <ul>
-                    <li><a href="#dashboard" aria-current="page">Inicio</a></li>
-                    <li><a href="#tareas">Tareas</a></li>
+                    <li><a href="index.html" aria-current="page">Inicio</a></li>
+                    <li><a href="pages/tareas.html">Tareas</a></li>
                     <li><a href="#faltas">Faltas</a></li>
                     <li><a href="#notas">Notas</a></li>
                     <li><a href="#configuracion">Configuración</a></li>
@@ -34,21 +34,20 @@
             </nav>
         </aside>
 
-        <!-- Contenido principal -->
+        <!-- Vista de inicio: resumen de tareas, indicadores y horario semanal -->
         <main class="contenido">
-            <!-- Panel principal -->
             <section id="dashboard">
                 <h2>Panel principal</h2>
                 <p>Consulta tu horario semanal, tus próximas entregas y cómo va tu curso de un vistazo.</p>
 
-                <!-- Resumen -->
                 <section id="resumen">
                     <div>
                         <h3>Resumen</h3>
+                        <!-- Vista previa de tareas con acceso al listado completo -->
                         <article class="proxTareas">
                             <div>
                                 <h3>Próximas tareas</h3>
-                                <a href="#tareas">Ver tareas</a>
+                                <a href="pages/tareas.html">Ver tareas</a>
                             </div>
                             <table>
                                 <thead>
@@ -93,6 +92,7 @@
                                 </tbody>
                             </table>
                         </article>
+                        <!-- Indicadores rápidos del curso -->
                         <article class="tarFaltas">
                             <h4>Faltas</h4>
                             <p class="digito">9%</p>
@@ -104,6 +104,7 @@
                             <a href="#notas">ver notas</a>
                         </article>
                     </div>
+                    <!-- Horario semanal; las celdas vacías no son seleccionables -->
                     <article class="horario">
                         <h4>Horario</h4>
                         <table>
@@ -190,8 +191,6 @@
                 </section>
             </section>
 
-            <!-- Próximas tareas -->
-            <section></section>
         </main>
 
         <footer class="pie">
