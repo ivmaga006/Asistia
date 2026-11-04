@@ -44,7 +44,21 @@
                         <h2 id="titulo-tareas">Listado de tareas</h2>
                         <p>Consulta, añade y modifica cualquier tarea</p>
                     </div>
-                    <button class="boton boton--principal" type="button">+ Nueva tarea</button>
+                    <div class="tareas-acciones">
+                        <button
+                            class="boton boton--secundario boton--restablecer"
+                            type="button"
+                            data-clear-controls
+                            data-label-filters="Borrar filtros"
+                            data-label-sort="Restablecer orden"
+                            data-label-both="Borrar filtros y orden"
+                            aria-label="Borrar filtros y orden"
+                            hidden
+                        >
+                            Borrar filtros y orden
+                        </button>
+                        <button class="boton boton--principal" type="button">+ Nueva tarea</button>
+                    </div>
                 </header>
 
                 <form class="tareas-herramientas" role="search">
@@ -63,12 +77,47 @@
                         <button class="boton-periodo" type="button" aria-pressed="false">Año</button>
                     </div>
 
-                    <button class="boton boton--secundario" type="button">
-                        Filtros <span aria-hidden="true">⌄</span>
-                    </button>
-                    <button class="boton boton--secundario" type="button">
-                        Ordenar <span aria-hidden="true">⌄</span>
-                    </button>
+                    <details class="desplegable-tareas">
+                        <summary class="boton boton--secundario">
+                            <span>Filtros</span>
+                            <svg aria-hidden="true" viewBox="0 0 12 12" focusable="false">
+                                <path d="m3 4.5 3 3 3-3"></path>
+                            </svg>
+                        </summary>
+                        <div class="panel-desplegable panel-filtros">
+                            <fieldset>
+                                <legend>Tipo de tarea</legend>
+                                <label><input type="checkbox" name="tipo" value="trabajo" /> Trabajo</label>
+                                <label><input type="checkbox" name="tipo" value="examen" /> Examen</label>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Estado</legend>
+                                <label><input type="checkbox" name="estado" value="activo" /> Activo</label>
+                                <label><input type="checkbox" name="estado" value="finalizado" /> Finalizado</label>
+                            </fieldset>
+                        </div>
+                    </details>
+                    <details class="desplegable-tareas">
+                        <summary class="boton boton--secundario">
+                            <span>Ordenar</span>
+                            <svg aria-hidden="true" viewBox="0 0 12 12" focusable="false">
+                                <path d="m3 4.5 3 3 3-3"></path>
+                            </svg>
+                        </summary>
+                        <div class="panel-desplegable panel-ordenar">
+                            <fieldset>
+                                <legend>Ordenar por</legend>
+                                <label><input type="radio" name="orden" value="fecha" checked /> Fecha límite</label>
+                                <label><input type="radio" name="orden" value="nombre" /> Nombre</label>
+                                <label><input type="radio" name="orden" value="modulo" /> Módulo</label>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Dirección</legend>
+                                <label><input type="radio" name="direccion" value="ascendente" checked /> Ascendente</label>
+                                <label><input type="radio" name="direccion" value="descendente" /> Descendente</label>
+                            </fieldset>
+                        </div>
+                    </details>
                 </form>
 
                 <!-- La tabla mantiene juntas las tareas, su estado y sus fechas -->
@@ -101,14 +150,14 @@
                                 <td><span class="estado estado--finalizado">Finalizado</span></td>
                                 <td><time datetime="2026-10-05">Lun 5 oct</time></td>
                                 <td><button class="accion-nota" type="button">Añadir nota</button></td>
-                                <td>
-                                    <button
-                                        class="boton-acciones"
-                                        type="button"
-                                        aria-label="Más acciones para Práctica 1"
-                                    >
-                                        …
-                                    </button>
+                                <td class="celda-acciones">
+                                    <details class="menu-acciones">
+                                        <summary class="boton-acciones" aria-label="Acciones para Práctica 1">…</summary>
+                                        <div class="opciones-acciones">
+                                            <button type="button">Editar</button>
+                                            <button class="accion-borrar" type="button">Borrar</button>
+                                        </div>
+                                    </details>
                                 </td>
                             </tr>
                             <tr>
@@ -124,14 +173,16 @@
                                 <td><span class="estado">Activo</span></td>
                                 <td><time datetime="2026-10-05">Lun 5 oct</time></td>
                                 <td>—</td>
-                                <td>
-                                    <button
-                                        class="boton-acciones"
-                                        type="button"
-                                        aria-label="Más acciones para Test acceso a datos"
-                                    >
-                                        …
-                                    </button>
+                                <td class="celda-acciones">
+                                    <details class="menu-acciones">
+                                        <summary class="boton-acciones" aria-label="Acciones para Test acceso a datos">
+                                            …
+                                        </summary>
+                                        <div class="opciones-acciones">
+                                            <button type="button">Editar</button>
+                                            <button class="accion-borrar" type="button">Borrar</button>
+                                        </div>
+                                    </details>
                                 </td>
                             </tr>
                             <tr>
@@ -147,14 +198,16 @@
                                 <td><span class="estado">Activo</span></td>
                                 <td><time datetime="2026-10-06">Mar 6 oct</time></td>
                                 <td>—</td>
-                                <td>
-                                    <button
-                                        class="boton-acciones"
-                                        type="button"
-                                        aria-label="Más acciones para instalación de Odoo"
-                                    >
-                                        …
-                                    </button>
+                                <td class="celda-acciones">
+                                    <details class="menu-acciones">
+                                        <summary class="boton-acciones" aria-label="Acciones para instalación de Odoo">
+                                            …
+                                        </summary>
+                                        <div class="opciones-acciones">
+                                            <button type="button">Editar</button>
+                                            <button class="accion-borrar" type="button">Borrar</button>
+                                        </div>
+                                    </details>
                                 </td>
                             </tr>
                             <tr>
@@ -170,14 +223,16 @@
                                 <td><span class="estado">Activo</span></td>
                                 <td><time datetime="2026-10-06">Mar 6 oct</time></td>
                                 <td>—</td>
-                                <td>
-                                    <button
-                                        class="boton-acciones"
-                                        type="button"
-                                        aria-label="Más acciones para manejo de pgAdmin"
-                                    >
-                                        …
-                                    </button>
+                                <td class="celda-acciones">
+                                    <details class="menu-acciones">
+                                        <summary class="boton-acciones" aria-label="Acciones para manejo de pgAdmin">
+                                            …
+                                        </summary>
+                                        <div class="opciones-acciones">
+                                            <button type="button">Editar</button>
+                                            <button class="accion-borrar" type="button">Borrar</button>
+                                        </div>
+                                    </details>
                                 </td>
                             </tr>
                             <tr>
@@ -193,14 +248,19 @@
                                 <td><span class="estado">Activo</span></td>
                                 <td><time datetime="2026-10-06">Mar 6 oct</time></td>
                                 <td>—</td>
-                                <td>
-                                    <button
-                                        class="boton-acciones"
-                                        type="button"
-                                        aria-label="Más acciones para práctica de DBVisualizer"
-                                    >
-                                        …
-                                    </button>
+                                <td class="celda-acciones">
+                                    <details class="menu-acciones">
+                                        <summary
+                                            class="boton-acciones"
+                                            aria-label="Acciones para práctica de DBVisualizer"
+                                        >
+                                            …
+                                        </summary>
+                                        <div class="opciones-acciones">
+                                            <button type="button">Editar</button>
+                                            <button class="accion-borrar" type="button">Borrar</button>
+                                        </div>
+                                    </details>
                                 </td>
                             </tr>
                             <tr>
@@ -216,14 +276,14 @@
                                 <td><span class="estado">Activo</span></td>
                                 <td><time datetime="2026-10-11">Dom 11 oct</time></td>
                                 <td>—</td>
-                                <td>
-                                    <button
-                                        class="boton-acciones"
-                                        type="button"
-                                        aria-label="Más acciones para Práctiques 6-9"
-                                    >
-                                        …
-                                    </button>
+                                <td class="celda-acciones">
+                                    <details class="menu-acciones">
+                                        <summary class="boton-acciones" aria-label="Acciones para Práctiques 6-9">…</summary>
+                                        <div class="opciones-acciones">
+                                            <button type="button">Editar</button>
+                                            <button class="accion-borrar" type="button">Borrar</button>
+                                        </div>
+                                    </details>
                                 </td>
                             </tr>
                             <tr>
@@ -239,14 +299,19 @@
                                 <td><span class="estado">Activo</span></td>
                                 <td><time datetime="2026-10-18">Dom 18 oct</time></td>
                                 <td>—</td>
-                                <td>
-                                    <button
-                                        class="boton-acciones"
-                                        type="button"
-                                        aria-label="Más acciones para Práctiques 1, 2 i 3"
-                                    >
-                                        …
-                                    </button>
+                                <td class="celda-acciones">
+                                    <details class="menu-acciones">
+                                        <summary
+                                            class="boton-acciones"
+                                            aria-label="Acciones para Práctiques 1, 2 i 3"
+                                        >
+                                            …
+                                        </summary>
+                                        <div class="opciones-acciones">
+                                            <button type="button">Editar</button>
+                                            <button class="accion-borrar" type="button">Borrar</button>
+                                        </div>
+                                    </details>
                                 </td>
                             </tr>
                             <tr>
@@ -262,14 +327,14 @@
                                 <td><span class="estado">Activo</span></td>
                                 <td><time datetime="2026-10-28">Mié 28 oct</time></td>
                                 <td>—</td>
-                                <td>
-                                    <button
-                                        class="boton-acciones"
-                                        type="button"
-                                        aria-label="Más acciones para autoevaluación"
-                                    >
-                                        …
-                                    </button>
+                                <td class="celda-acciones">
+                                    <details class="menu-acciones">
+                                        <summary class="boton-acciones" aria-label="Acciones para autoevaluación">…</summary>
+                                        <div class="opciones-acciones">
+                                            <button type="button">Editar</button>
+                                            <button class="accion-borrar" type="button">Borrar</button>
+                                        </div>
+                                    </details>
                                 </td>
                             </tr>
                         </tbody>
