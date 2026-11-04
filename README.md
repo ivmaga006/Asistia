@@ -2,7 +2,7 @@
 
 Aplicación de escritorio para estudiantes que junta en un solo sitio el horario, el control de faltas, la agenda de exámenes y trabajos, y las notas del curso.
 
-> **Estado actual:** versión 1.0, solo estructura HTML semántica. Nació como práctica de 2º DAM (Desarrollo de Interfaces) y la idea es seguir desarrollándola hasta convertirla en una aplicación real.
+> **Estado actual:** prototipo visual en HTML y CSS; la funcionalidad con JavaScript está pendiente. Nació como práctica de 2º DAM (Desarrollo de Interfaces) y la idea es seguir desarrollándola hasta convertirla en una aplicación real.
 
 ## Por qué existe
 
@@ -83,8 +83,12 @@ Desde el Horario se accede al resto con el menú hamburguesa. Desde cualquier ot
 ```
 asistia/
 ├── index.html
+├── pages/
+│   └── tareas.html
 ├── css/
-│   └── styles.css
+│   ├── styles.css
+│   └── pages/
+│       └── tareas.css
 ├── js/
 │   └── app.js
 └── img/
@@ -94,7 +98,7 @@ asistia/
 ## Hoja de ruta
 
 - [x] Estructura HTML semántica (Práctica 1)
-- [ ] Estilos con CSS (diseño del dashboard)
+- [x] Estilos con CSS (diseño del dashboard y listado de tareas)
 - [ ] Funcionalidad con JavaScript
 - [ ] Decidir qué entra en la primera versión real y qué se queda como ampliación
 - [ ] Empaquetado como aplicación de escritorio
