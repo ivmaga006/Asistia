@@ -57,7 +57,9 @@
                         >
                             Borrar filtros y orden
                         </button>
-                        <button class="boton boton--principal" type="button">+ Nueva tarea</button>
+                        <button class="boton boton--principal" type="button" data-open-task-dialog>
+                            + Nueva tarea
+                        </button>
                     </div>
                 </header>
 
@@ -151,7 +153,7 @@
                                 <td><time datetime="2026-10-05">Lun 5 oct</time></td>
                                 <td><button class="accion-nota" type="button">Añadir nota</button></td>
                                 <td class="celda-acciones">
-                                    <details class="menu-acciones">
+                                    <details class="menu-acciones" name="acciones-tarea">
                                         <summary class="boton-acciones" aria-label="Acciones para Práctica 1">…</summary>
                                         <div class="opciones-acciones">
                                             <button type="button">Editar</button>
@@ -174,7 +176,7 @@
                                 <td><time datetime="2026-10-05">Lun 5 oct</time></td>
                                 <td>—</td>
                                 <td class="celda-acciones">
-                                    <details class="menu-acciones">
+                                    <details class="menu-acciones" name="acciones-tarea">
                                         <summary class="boton-acciones" aria-label="Acciones para Test acceso a datos">
                                             …
                                         </summary>
@@ -199,7 +201,7 @@
                                 <td><time datetime="2026-10-06">Mar 6 oct</time></td>
                                 <td>—</td>
                                 <td class="celda-acciones">
-                                    <details class="menu-acciones">
+                                    <details class="menu-acciones" name="acciones-tarea">
                                         <summary class="boton-acciones" aria-label="Acciones para instalación de Odoo">
                                             …
                                         </summary>
@@ -224,7 +226,7 @@
                                 <td><time datetime="2026-10-06">Mar 6 oct</time></td>
                                 <td>—</td>
                                 <td class="celda-acciones">
-                                    <details class="menu-acciones">
+                                    <details class="menu-acciones" name="acciones-tarea">
                                         <summary class="boton-acciones" aria-label="Acciones para manejo de pgAdmin">
                                             …
                                         </summary>
@@ -249,7 +251,7 @@
                                 <td><time datetime="2026-10-06">Mar 6 oct</time></td>
                                 <td>—</td>
                                 <td class="celda-acciones">
-                                    <details class="menu-acciones">
+                                    <details class="menu-acciones" name="acciones-tarea">
                                         <summary
                                             class="boton-acciones"
                                             aria-label="Acciones para práctica de DBVisualizer"
@@ -277,7 +279,7 @@
                                 <td><time datetime="2026-10-11">Dom 11 oct</time></td>
                                 <td>—</td>
                                 <td class="celda-acciones">
-                                    <details class="menu-acciones">
+                                    <details class="menu-acciones" name="acciones-tarea">
                                         <summary class="boton-acciones" aria-label="Acciones para Práctiques 6-9">…</summary>
                                         <div class="opciones-acciones">
                                             <button type="button">Editar</button>
@@ -300,7 +302,7 @@
                                 <td><time datetime="2026-10-18">Dom 18 oct</time></td>
                                 <td>—</td>
                                 <td class="celda-acciones">
-                                    <details class="menu-acciones">
+                                    <details class="menu-acciones" name="acciones-tarea">
                                         <summary
                                             class="boton-acciones"
                                             aria-label="Acciones para Práctiques 1, 2 i 3"
@@ -328,7 +330,7 @@
                                 <td><time datetime="2026-10-28">Mié 28 oct</time></td>
                                 <td>—</td>
                                 <td class="celda-acciones">
-                                    <details class="menu-acciones">
+                                    <details class="menu-acciones" name="acciones-tarea">
                                         <summary class="boton-acciones" aria-label="Acciones para autoevaluación">…</summary>
                                         <div class="opciones-acciones">
                                             <button type="button">Editar</button>
@@ -355,5 +357,88 @@
         <footer class="pie">
             <p>Asistia, Versión 1.0</p>
         </footer>
+
+        <!-- Diálogo modal para crear una tarea sin abandonar el listado -->
+        <dialog class="dialogo-tarea" aria-labelledby="titulo-dialogo-tarea" >
+            <header class="dialogo-cabecera">
+                <button class="dialogo-volver" type="button" data-close-task-dialog>
+                    <span aria-hidden="true">‹</span> Volver al listado
+                </button>
+                <h2 id="titulo-dialogo-tarea">Nueva tarea</h2>
+                <p>Completa los detalles y guarda los cambios</p>
+            </header>
+
+            <form class="formulario-tarea" data-task-form>
+                <label class="campo-tarea campo-tarea--ancho-completo">
+                    <span>Nombre</span>
+                    <input type="text" name="nombre" placeholder="Escribe el nombre de la tarea" required />
+                </label>
+
+                <fieldset class="campo-tarea campo-tipo-tarea">
+                    <legend>Tipo</legend>
+                    <div class="opciones-tipo">
+                        <label>
+                            <input type="radio" name="tipo-nueva-tarea" value="Trabajo" checked />
+                            <span>Trabajo</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="tipo-nueva-tarea" value="Examen" />
+                            <span>Examen</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <label class="campo-tarea">
+                    <span>Módulo</span>
+                    <select name="modulo" required>
+                        <option value="" selected disabled>Selecciona un módulo</option>
+                        <option>Acceso a datos</option>
+                        <option>Sistemas de gestión empresarial</option>
+                        <option>Desarrollo de interfaces</option>
+                        <option>Programación multimedia y dispositivos móviles</option>
+                        <option>Itinerario personal para la empleabilidad</option>
+                    </select>
+                </label>
+
+                <label class="campo-tarea">
+                    <span>Fecha límite</span>
+                    <input type="date" name="fecha" required />
+                </label>
+
+                <label class="tarea-evaluable campo-tarea--ancho-completo">
+                    <input type="checkbox" name="evaluable" />
+                    <span class="interruptor-evaluable" aria-hidden="true"></span>
+                    <span class="texto-evaluable">
+                        <strong>Evaluable</strong>
+                        <span>Podrás añadir una nota a esta tarea</span>
+                    </span>
+                </label>
+
+                <footer class="formulario-acciones campo-tarea--ancho-completo">
+                    <button class="boton boton--secundario" type="button" data-close-task-dialog>
+                        Cancelar
+                    </button>
+                    <button class="boton boton--principal" type="submit">Guardar cambios</button>
+                </footer>
+            </form>
+        </dialog>
+
+        <!-- Confirmación preparada para mostrarla después de guardar una tarea -->
+        <dialog class="dialogo-confirmacion" aria-labelledby="titulo-confirmacion-tarea">
+            <div class="confirmacion-icono" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="m7 12.5 3.2 3.2L17.5 8"></path>
+                </svg>
+            </div>
+            <h2 id="titulo-confirmacion-tarea">Tarea guardada</h2>
+            <p>
+                <strong data-confirmation-task-name>La tarea</strong> se ha añadido a tus tareas, con fecha límite el
+                <time data-confirmation-task-date>la fecha seleccionada</time>.
+            </p>
+            <footer class="confirmacion-acciones">
+                <button class="boton boton--principal" type="button" data-close-confirmation>Cerrar</button>
+            </footer>
+        </dialog>
+
     </body>
 </html>

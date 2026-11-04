@@ -328,6 +328,10 @@
     display: inline-block;
 }
 
+.menu-acciones[open] {
+    z-index: 20;
+}
+
 .boton-acciones {
     display: flex;
     align-items: center;
@@ -360,9 +364,9 @@
 
 .opciones-acciones {
     position: absolute;
-    z-index: 5;
-    top: calc(100% + 4px);
-    right: 0;
+    z-index: 21;
+    top: 4px;
+    right: calc(100% + 4px);
     display: grid;
     min-width: 120px;
     padding: 4px;
@@ -370,6 +374,11 @@
     border-radius: 6px;
     background-color: var(--general);
     box-shadow: 0 6px 18px rgb(18 40 63 / 14%);
+}
+
+.tabla-tareas tbody tr:nth-last-child(-n + 2) .opciones-acciones {
+    top: auto;
+    bottom: 4px;
 }
 
 .opciones-acciones button {
@@ -449,6 +458,320 @@
     white-space: nowrap;
 }
 
+.dialogo-tarea,
+.dialogo-confirmacion {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+}
+
+.dialogo-tarea {
+    width: min(560px, calc(100vw - 32px));
+    max-width: none;
+    max-height: min(90vh, 720px);
+    max-height: min(90dvh, 720px);
+    padding: 24px;
+    overflow-y: auto;
+    border: 0;
+    border-radius: 10px;
+    background-color: var(--general);
+    color: var(--principal);
+    box-shadow: 0 16px 48px rgb(18 40 63 / 18%);
+}
+
+.dialogo-tarea::backdrop {
+    background-color: rgb(18 40 63 / 28%);
+    backdrop-filter: blur(4px);
+}
+
+.dialogo-cabecera {
+    margin-bottom: 20px;
+}
+
+.dialogo-volver {
+    margin: 0 0 12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--texto-secundario);
+    font: inherit;
+    font-size: var(--tam-12);
+    cursor: pointer;
+}
+
+.dialogo-volver span {
+    margin-right: 4px;
+    color: var(--principal);
+    font-size: var(--tam-16);
+}
+
+.dialogo-cabecera h2 {
+    margin: 0 0 4px;
+    color: var(--principal);
+    font-size: var(--tam-titulo-bloque);
+    font-weight: var(--peso-semibold);
+}
+
+.dialogo-cabecera p {
+    margin: 0;
+    color: var(--texto-secundario);
+    font-size: var(--tam-12);
+}
+
+.formulario-tarea {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: var(--tarjetas);
+}
+
+.campo-tarea {
+    display: grid;
+    min-width: 0;
+    gap: 6px;
+    color: var(--texto-secundario);
+    font-size: var(--tam-12);
+}
+
+.campo-tarea--ancho-completo {
+    grid-column: 1 / -1;
+}
+
+.campo-tarea input:not([type="checkbox"]):not([type="radio"]),
+.campo-tarea select {
+    width: 100%;
+    min-width: 0;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid var(--bordes-campos);
+    border-radius: 6px;
+    background-color: var(--general);
+    color: var(--principal);
+    font: inherit;
+    font-size: var(--tam-12);
+}
+
+.campo-tipo-tarea {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.campo-tipo-tarea legend {
+    margin-bottom: 6px;
+    color: var(--texto-secundario);
+    font-size: var(--tam-12);
+}
+
+.opciones-tipo {
+    display: flex;
+    gap: 6px;
+}
+
+.opciones-tipo label {
+    cursor: pointer;
+}
+
+.opciones-tipo input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.opciones-tipo span {
+    display: block;
+    padding: 9px 16px;
+    border: 1px solid var(--separadores);
+    border-radius: 6px;
+    background-color: var(--general);
+    color: var(--principal);
+}
+
+.opciones-tipo input:checked + span {
+    border-color: var(--principal);
+    background-color: var(--principal);
+    color: var(--general);
+}
+
+.opciones-tipo input:focus-visible + span {
+    outline: 2px solid var(--principal);
+    outline-offset: 2px;
+}
+
+.tarea-evaluable {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 58px;
+    padding: 10px 12px;
+    border: 1px solid var(--separadores);
+    border-radius: 8px;
+    background-color: var(--general);
+    color: var(--principal);
+    cursor: pointer;
+}
+
+.tarea-evaluable input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.interruptor-evaluable {
+    position: relative;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 20px;
+    border-radius: 999px;
+    background-color: var(--separadores);
+    transition: background-color 150ms ease;
+}
+
+.interruptor-evaluable::after {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--general);
+    box-shadow: 0 1px 3px rgb(18 40 63 / 20%);
+    content: "";
+    transition: transform 150ms ease;
+}
+
+.tarea-evaluable input:checked + .interruptor-evaluable {
+    background-color: var(--principal);
+}
+
+.tarea-evaluable input:checked + .interruptor-evaluable::after {
+    transform: translateX(16px);
+}
+
+.tarea-evaluable input:focus-visible + .interruptor-evaluable {
+    outline: 2px solid var(--principal);
+    outline-offset: 3px;
+}
+
+.texto-evaluable {
+    display: grid;
+    gap: 2px;
+}
+
+.texto-evaluable strong {
+    font-size: var(--tam-12);
+    font-weight: var(--peso-semibold);
+}
+
+.texto-evaluable > span {
+    color: var(--texto-secundario);
+    font-size: var(--tam-12);
+}
+
+.formulario-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-top: 4px;
+}
+
+.formulario-acciones .boton {
+    min-height: 36px;
+    padding: 0 14px;
+}
+
+.formulario-acciones .boton--secundario {
+    border-color: var(--separadores);
+}
+
+.dialogo-tarea :focus-visible {
+    outline: 2px solid var(--principal);
+    outline-offset: 2px;
+}
+
+.dialogo-confirmacion {
+    width: min(360px, calc(100vw - 32px));
+    max-width: none;
+    padding: 22px 20px 16px;
+    border: 0;
+    border-radius: 10px;
+    background-color: var(--general);
+    color: var(--principal);
+    box-shadow: 0 16px 48px rgb(18 40 63 / 18%);
+}
+
+.dialogo-confirmacion::backdrop {
+    background-color: rgb(18 40 63 / 48%);
+    backdrop-filter: blur(4px);
+}
+
+.confirmacion-icono {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    margin-bottom: 10px;
+    place-items: center;
+    border-radius: 50%;
+    background-color: var(--fondo-exito);
+    color: var(--exito);
+}
+
+.confirmacion-icono svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.confirmacion-icono path {
+    transform: translate(0.5px, 0.5px);
+}
+
+.dialogo-confirmacion h2 {
+    margin: 0 0 6px;
+    color: var(--principal);
+    font-size: var(--tam-14);
+    font-weight: var(--peso-semibold);
+}
+
+.dialogo-confirmacion p {
+    margin: 0;
+    color: var(--texto-secundario);
+    font-size: var(--tam-12);
+    line-height: 1.5;
+}
+
+.dialogo-confirmacion p strong {
+    color: var(--principal);
+    font-weight: var(--peso-semibold);
+}
+
+.confirmacion-acciones {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.confirmacion-acciones .boton {
+    min-height: 32px;
+    padding: 0 16px;
+}
+
+.dialogo-confirmacion :focus-visible {
+    outline: 2px solid var(--principal);
+    outline-offset: 2px;
+}
+
 @media (min-width: 901px) and (min-height: 600px) {
     body.vista-tareas {
         height: 100vh;
@@ -522,5 +845,14 @@
 
     .tareas-cabecera .boton {
         padding: 0 10px;
+    }
+
+    .dialogo-tarea {
+        padding: 18px;
+    }
+
+    .formulario-tarea {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
     }
 }
