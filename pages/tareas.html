@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Consulta y organiza tus tareas y exámenes en Asistia." />
+        <title>Listado de tareas | Asistia</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/styles.css" />
+        <link rel="stylesheet" href="../css/pages/tareas.css" />
+    </head>
+
+    <body class="vista-tareas">
+        <!-- Cabecera común de la aplicación -->
+        <header class="cabecera">
+            <h1>Asistia</h1>
+            <p>Agenda, faltas y notas de tu curso en un solo sitio.</p>
+        </header>
+
+        <!-- Navegación compartida; aria-current señala la página abierta -->
+        <aside class="menu">
+            <nav aria-label="Navegación principal">
+                <h2>Menú</h2>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="tareas.html" aria-current="page">Tareas</a></li>
+                    <li><a href="#faltas">Faltas</a></li>
+                    <li><a href="#notas">Notas</a></li>
+                    <li><a href="#configuracion">Configuración</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Controles y tabla del listado; sus acciones se conectarán más adelante -->
+        <main class="contenido contenido--tareas">
+            <section class="listado-tareas" aria-labelledby="titulo-tareas">
+                <header class="tareas-cabecera">
+                    <div>
+                        <h2 id="titulo-tareas">Listado de tareas</h2>
+                        <p>Consulta, añade y modifica cualquier tarea</p>
+                    </div>
+                    <button class="boton boton--principal" type="button">+ Nueva tarea</button>
+                </header>
+
+                <form class="tareas-herramientas" role="search">
+                    <label class="busqueda-tareas">
+                        <span class="texto-oculto">Buscar por nombre o módulo</span>
+                        <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+                            <circle cx="7" cy="7" r="4.5"></circle>
+                            <path d="m10.5 10.5 3 3"></path>
+                        </svg>
+                        <input type="search" placeholder="Buscar por nombre o módulo" />
+                    </label>
+
+                    <div class="periodos-tareas" role="group" aria-label="Periodo">
+                        <button class="boton-periodo activo" type="button" aria-pressed="true">7 días</button>
+                        <button class="boton-periodo" type="button" aria-pressed="false">1 mes</button>
+                        <button class="boton-periodo" type="button" aria-pressed="false">Año</button>
+                    </div>
+
+                    <button class="boton boton--secundario" type="button">
+                        Filtros <span aria-hidden="true">⌄</span>
+                    </button>
+                    <button class="boton boton--secundario" type="button">
+                        Ordenar <span aria-hidden="true">⌄</span>
+                    </button>
+                </form>
+
+                <!-- La tabla mantiene juntas las tareas, su estado y sus fechas -->
+                <div class="tabla-tareas-contenedor">
+                    <table class="tabla-tareas">
+                        <thead>
+                            <tr>
+                                <th class="columna-seleccion"><span class="texto-oculto">Completada</span></th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Módulo</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Fecha límite</th>
+                                <th scope="col">Nota</th>
+                                <th class="columna-acciones"><span class="texto-oculto">Acciones</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="celda-seleccion">
+                                    <input
+                                        type="checkbox"
+                                        checked
+                                        aria-label="Marcar práctica 1 como pendiente"
+                                    />
+                                </td>
+                                <td>Práctica 1. Persistencia de datos mediante ORM (1)</td>
+                                <td>Acceso a datos</td>
+                                <td>Trabajo</td>
+                                <td><span class="estado estado--finalizado">Finalizado</span></td>
+                                <td><time datetime="2026-10-05">Lun 5 oct</time></td>
+                                <td><button class="accion-nota" type="button">Añadir nota</button></td>
+                                <td>
+                                    <button
+                                        class="boton-acciones"
+                                        type="button"
+                                        aria-label="Más acciones para Práctica 1"
+                                    >
+                                        …
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="celda-seleccion">
+                                    <input
+                                        type="checkbox"
+                                        aria-label="Marcar como completada: Test acceso a datos"
+                                    />
+                                </td>
+                                <td>Test acceso a datos</td>
+                                <td>Acceso a datos</td>
+                                <td>Examen</td>
+                                <td><span class="estado">Activo</span></td>
+                                <td><time datetime="2026-10-05">Lun 5 oct</time></td>
+                                <td>—</td>
+                                <td>
+                                    <button
+                                        class="boton-acciones"
+                                        type="button"
+                                        aria-label="Más acciones para Test acceso a datos"
+                                    >
+                                        …
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="celda-seleccion">
+                                    <input
+                                        type="checkbox"
+                                        aria-label="Marcar como completada: Entrega instalación de Odoo 13 en Linux"
+                                    />
+                                </td>
+                                <td>Entrega: instalación de Odoo 13 en Linux</td>
+                                <td>Sistemas de gestión empresarial</td>
+                                <td>Trabajo</td>
+                                <td><span class="estado">Activo</span></td>
+                                <td><time datetime="2026-10-06">Mar 6 oct</time></td>
+                                <td>—</td>
+                                <td>
+                                    <button
+                                        class="boton-acciones"
+                                        type="button"
+                                        aria-label="Más acciones para instalación de Odoo"
+                                    >
+                                        …
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="celda-seleccion">
+                                    <input
+                                        type="checkbox"
+                                        aria-label="Marcar como completada: Entrega manejo de pgAdmin"
+                                    />
+                                </td>
+                                <td>Entrega: manejo de pgAdmin</td>
+                                <td>Sistemas de gestión empresarial</td>
+                                <td>Trabajo</td>
+                                <td><span class="estado">Activo</span></td>
+                                <td><time datetime="2026-10-06">Mar 6 oct</time></td>
+                                <td>—</td>
+                                <td>
+                                    <button
+                                        class="boton-acciones"
+                                        type="button"
+                                        aria-label="Más acciones para manejo de pgAdmin"
+                                    >
+                                        …
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="celda-seleccion">
+                                    <input
+                                        type="checkbox"
+                                        aria-label="Marcar como completada: Entrega práctica básica de DBVisualizer"
+                                    />
+                                </td>
+                                <td>Entrega: práctica básica de DBVisualizer</td>
+                                <td>Sistemas de gestión empresarial</td>
+                                <td>Trabajo</td>
+                                <td><span class="estado">Activo</span></td>
+                                <td><time datetime="2026-10-06">Mar 6 oct</time></td>
+                                <td>—</td>
+                                <td>
+                                    <button
+                                        class="boton-acciones"
+                                        type="button"
+                                        aria-label="Más acciones para práctica de DBVisualizer"
+                                    >
+                                        …
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="celda-seleccion">
+                                    <input
+                                        type="checkbox"
+                                        aria-label="Marcar entrega Práctiques 6-9 como completada"
+                                    />
+                                </td>
+                                <td>Entrega Práctiques 6-9</td>
+                                <td>Acceso a datos</td>
+                                <td>Trabajo</td>
+                                <td><span class="estado">Activo</span></td>
+                                <td><time datetime="2026-10-11">Dom 11 oct</time></td>
+                                <td>—</td>
+                                <td>
+                                    <button
+                                        class="boton-acciones"
+                                        type="button"
+                                        aria-label="Más acciones para Práctiques 6-9"
+                                    >
+                                        …
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="celda-seleccion">
+                                    <input
+                                        type="checkbox"
+                                        aria-label="Marcar entrega Práctiques 1, 2 i 3 como completada"
+                                    />
+                                </td>
+                                <td>Entrega Práctiques 1, 2 i 3</td>
+                                <td>Acceso a datos</td>
+                                <td>Trabajo</td>
+                                <td><span class="estado">Activo</span></td>
+                                <td><time datetime="2026-10-18">Dom 18 oct</time></td>
+                                <td>—</td>
+                                <td>
+                                    <button
+                                        class="boton-acciones"
+                                        type="button"
+                                        aria-label="Más acciones para Práctiques 1, 2 i 3"
+                                    >
+                                        …
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="celda-seleccion">
+                                    <input
+                                        type="checkbox"
+                                        aria-label="Marcar entrega autoevaluación como completada"
+                                    />
+                                </td>
+                                <td>Entrega autoevaluación</td>
+                                <td>Acceso a datos</td>
+                                <td>Trabajo</td>
+                                <td><span class="estado">Activo</span></td>
+                                <td><time datetime="2026-10-28">Mié 28 oct</time></td>
+                                <td>—</td>
+                                <td>
+                                    <button
+                                        class="boton-acciones"
+                                        type="button"
+                                        aria-label="Más acciones para autoevaluación"
+                                    >
+                                        …
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <footer class="tareas-pie">
+                    <p>Mostrando 1-8 de 8 tareas</p>
+                    <nav class="paginacion" aria-label="Paginación del listado">
+                        <button class="boton-pagina" type="button" aria-label="Página anterior" disabled>‹</button>
+                        <span aria-current="page">1</span>
+                        <button class="boton-pagina" type="button" aria-label="Página siguiente" disabled>›</button>
+                    </nav>
+                </footer>
+            </section>
+        </main>
+
+        <footer class="pie">
+            <p>Asistia, Versión 1.0</p>
+        </footer>
+    </body>
+</html>
